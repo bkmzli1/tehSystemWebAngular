@@ -1,2 +1,37 @@
-/node_modules/
-/app/
+#eclipse project files
+**/.project
+**/.classpath
+**/.settings
+**/.dmproject
+**/.dfsproject
+**/.checkstyle
+
+#logs
+*.log
+
+# maven files
+**/target
+**/overlays
+**/bin
+**/*.class
+
+#gradle files
+build/
+
+# idea project files
+*.iml
+*.ipr
+*.iws
+.idea
+/.gradle/
+**/out
+**/generated/**
+
+#SVN ariifacts
+.svn
+.tpignore
+/img/
+
+#myFile
+MyFile/
+/logs/

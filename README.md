@@ -1,27 +1,76 @@
-# TehSystem2
+# READ ME FIRST.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
+#Запуск
+- Нужно выставить свои настройки в application.properties. Запускаем java приложение, чтобы служба REST могла получать запросы,
+ затем заходим в папочку "clientCaseLab". 
+ Там открываем консоль (можно и из консоли перейти в эту папку), вводим "ng serve --open" и ожидаем,
+  пока Вас не перекинет на localhost:4200.
 
-## Development server
+## Основы
+- Среда разработки – IDEA,  
+    > Если вы используете иную среду разработки, вы делаете это, осознавая и принимая на себя все риски. 
+- База данных – postgresql.
+    - Можно использовать любую другую, если сможете обосновать, зачем нужна такая замена.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Cтек технологий
+- Java 8. 
+    > Да, может и хотелось бы делать все на 14 или вообще на Kotlin, но нет. 
+- Maven для сборок. Этот момент строго обязателен,  
+    поскольку вся наша экосистема использует именно его.
+- git + gitlab для контроля версий
 
-## Code scaffolding
+## По библиотекам серверной части
+- Spring boot 2 во главе стола
+    - Обращаем внимание, что нужно использовать конфигурацию через аннотации, а не простынями xml-файлов.  
+        Последнее устарело и очень сложно в поддержке.
+- Для работы с PDF: [Apache PDFBox](https://pdfbox.apache.org/)
+- Для работы со штрих кодами: [zxing](https://github.com/zxing/zxing)
+- Для работы с многостраничными TIFF: JAI (является частью Java SE) 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## По клиентской части
+- Самое главное: 
+    - Не нужно городить сложный интерфейс.  
+        Он нужен минимальный, чтобы только можно было показать работу серверного кода.  
+        Если он будет сделан красиво, а не как всегда – будет плюсик в карму.
+- Рекомендуем использовать Angular, не важно, первой или второй версии. Но тут выбор за вами.
+- Файлы css, js и html-шаблона должны быть отдельными.  
+    Не надо громоздить их прямо на страничку шаблона. 
+    - Стили в тегах не прописываем, deprecated теги не используем!
+- Взаимодействие с сервером, если делаете SPA – JSON.
+    - Не использовать cамописные протоколы, CSV, SOAP, XMLRPC и прочие подобные вещи.
+- Использование less, Sass, grunt в качестве сборщика для angular 1.X - плюс в карму
+    
+## Правила работы с Git
+В этом проекте работает ряд ограничений:
+1.  Ветка `master` защищена от прямых коммитов, только мерж реквесты
+1.  Сообщения коммитов должны быть осмысленными и единообразными и соответствовать следующему regex:
+    ```
+    ((^([Rr][Ee][Ff]|[Ff][Ii][Xx])\.?\s+#\d+\s+.*)|(Finish\.?\s+#\d+\s+.*\w*)|Merge.*)
+    ```
+    *   Т.е. разрешены коммиты вида:
+        ```
+        Ref #00000 Message
+        ```
+        ```
+        Fix #00000 Message
+        ```
+        ```
+        Merge <branch-0> into <branch-1>
+        ```
+1.  Наименовение публикуемой в проект ветки должно соответствовать следующему regex:
+    ```
+    ((feature|hotfix|bugfix|release|sub)\/.*|develop|master)
+    ```
+    *   Старайтесь избегать безмерных и бессмысленных имен после `/`
+    *   В идеале, должно быть достаточно указания номера задачи `feature/#0000`
+    > Локально у себя можете городить всё, что угодно, если необходимо
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Организационные моменты
+- Stand-up каждый рабочий день в 10 утра
+    - Делимся статусом по текущим работам:
+        - Что уже сделали
+        - Что в течении дня планируете делать
+        - Какие вопросы возникли.
+- Code Review раз в неделю
+    - По результатам делаем созвон и обсуждаем обнаруженные проблемы.
+- Если в команде есть проблемы организационного характера – обязательно сообщите нам об этом.
