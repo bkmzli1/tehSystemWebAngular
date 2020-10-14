@@ -1,0 +1,40 @@
+
+
+<div class="text_padding">
+  <div class="mr-2">
+    <div class="alert alert-danger "  *ngIf="error">
+      {{errorText}}
+    </div>
+    <select class="form-control" (change)="test(selectedValue)"  [(ngModel)]='selectedValue' >
+        <option *ngFor="let item of users;" [value]="item.id" >{{item.name}}</option>
+    </select>
+  </div>
+
+  <div class="text_padding" *ngIf="user != null">
+
+
+        <div class="socseti">
+          <div class="author_block">
+            <div class="author_avatar">
+              <div align="right" style="margin-right: 20px;">
+                <div class="autor_avatar_in text_padding" style="padding: 50% 50% 0px 0px"><a href="/index/8-1" id="a_avatar" [title]="user.name"><span
+                  class="user_avatar" ><img src="http://localhost:1985/public/vk.png" alt="" border="0"></span></a></div>
+              </div>
+            </div>
+            <div class="author_information text_padding">
+              <div class="author_user" id="h1_name" title="">Имя Исполнителя: {{user.name}}</div>
+              <div class="author_user" id="h1_name" title="">Телефон: {{user.name}}</div>
+              <div class="author_group" id="a_email"><font color="#17575f">Почта: {{user.email}}</font></div>
+            </div>
+            <div class="author_information text_padding" style="width: 100%" >        <label style="width: 100%">
+              <textarea class="text_padding"   style="width: 100%; height: 150px"  [(ngModel)]="text" ></textarea>
+            </label></div></div>
+          <button class="ld-but" (click)="create()">Добавить заказ</button>
+        </div>
+
+  </div>
+
+
+</div>
+
+<!--(change)=""-->

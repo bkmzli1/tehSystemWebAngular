@@ -1,0 +1,127 @@
+.user_avatar img {
+  border: 1px solid #B7BEC7;
+  width: 75px;
+  padding: 2px;
+  border-radius: 57px;
+}
+
+.load_left {
+  display: table-cell;
+  vertical-align: top; /* width: 400px; */
+  padding-bottom: 3px;
+  padding-left: 9px; /* background: #B6E4FF; */
+  border-radius: 5px;
+  height: 140px;
+}
+
+.load_right {
+  display: table-cell;
+  vertical-align: top; /* width: 400px; */
+  padding-bottom: 3px;
+  padding-right: 9px; /* background: #B6E4FF; */
+  border-radius: 5px;
+  float: right;
+  height: 140px;
+}
+
+
+/*Prof zakladki*/
+.rld-but, .ld-but {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #3498db;
+  border: 2px solid #3498db;
+  text-decoration: none;
+  inline: inline-block;
+  padding: 10px 28px;
+  margin-right: 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px 0px rgba(73, 139, 250, 0.57);
+}
+
+.ld-but:hover {
+  background: #3498db;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.rld-but:hover {
+  background: #3498db;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.ful-img img {
+  width: 100%;
+  height: 250px;
+  margin: 0 0 10px 0;
+  float: left;
+  border: 4px solid #FCFCFC;
+  box-shadow: 0px 0px 1px 1px #DDD;
+}
+
+.uz a {
+}
+
+
+.load_left {
+
+  display: table-cell;
+  vertical-align: top; /* width: 400px; */
+  padding-bottom: 3px;
+  padding-left: 9px; /* background: #B6E4FF; */
+  border-radius: 5px;
+  height: 140px;
+  width: 1%;
+}
+
+.load_right {
+  display: table-cell;
+  vertical-align: top; /* width: 400px; */
+  padding-bottom: 3px;
+  padding-right: 9px; /* background: #B6E4FF; */
+  border-radius: 5px;
+  float: right;
+  height: 140px;
+}
+
+.top_block_title {
+  font-size: 17px;
+  color: #444141;
+  margin-bottom: 7px;
+  font-family: 'Play';
+}
+
+.author_avatar img { /* border: solid 1px #D2D2D2; *//* border-radius: 5px; *//* box-shadow: 0 0 15px rgba(122, 122, 122, 0.38); *//* width: 75px; *//* height: 72px; *//* object-fit: cover; *//* padding: 2px; *//* border-radius: 57px; */
+}
+
+.author_information {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.author_user {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+
+.author_avatar {
+  display: table-cell;
+  vertical-align: top;
+  width: 100px;
+}
+
+.author_group {
+  margin-top: 7px;
+  font-size: 13px;
+  color: #6A6A6D;
+}
+
+.author_load {
+  font-size: 13px;
+  margin-top: 5px;
+}
+

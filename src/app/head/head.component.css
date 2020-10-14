@@ -1,0 +1,19 @@
+.header{
+  background: #606060;
+  box-shadow: 0 4px 10px rgb(184, 182, 182);
+
+}
+header>div,footer>div,.content{
+  max-width:1638px;
+  width:100%;
+  min-width:1380px;
+  padding:12px 20px;
+  box-sizing:border-box;
+}
+div.header{
+  max-width:1638px;
+  width:100%;
+  min-width:1380px;
+  padding:0 34px;
+  box-sizing:border-box;
+}

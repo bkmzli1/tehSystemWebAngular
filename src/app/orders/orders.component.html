@@ -1,0 +1,21 @@
+<div class="text_padding">
+  <table class="table">
+    <thead class="table table-striped">
+    <tr>
+      <th scope="col">Заказал</th>
+      <th scope="col">Исполнитель</th>
+      <th scope="col">Задача</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of orders">
+
+      <td>{{item.userCrate.lastName +' '+ item.userCrate.firstName +' '+item.userCrate.middleName}}</td>
+      <td>{{item.userExecutor.username}}</td>
+      <td>{{item.text}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
