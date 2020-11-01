@@ -9,7 +9,6 @@ class User {
   username: string;
   email: string;
   admin: boolean;
-  img: string;
   firstName: string;
   lastName: string;
   middleName: string;
@@ -22,7 +21,7 @@ class User {
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  userEd: User = {admin: false, email: '', firstName: '', id: '', img: '', lastName: '', middleName: '', password: '', username: ''} ;
+  userEd: User = {admin: false, email: '', firstName: '', id: '',  lastName: '', middleName: '', password: '', username: ''} ;
   user: User = AppService.log.user;
   credentials = {username: '', password: ''};
   constructor(private app: AppService, private http: HttpClient, private router: Router, private cookieService: CookieService) {

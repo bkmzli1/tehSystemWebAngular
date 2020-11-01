@@ -29,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { OrdersCreateComponent } from './orders-create/orders-create.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import {CookieService} from 'ngx-cookie-service';
+import { OrderComponent } from './order/order.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'reg', component: RegisterComponent},
   { path: 'news', component: NewsComponent},
+  { path: 'order', component: OrderComponent},
   { path: 'orders', component: OrdersComponent},
   { path: 'ordersCreate', component: OrdersCreateComponent},
   { path: 'myOrders', component: MyOrdersComponent},
@@ -74,6 +76,7 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
     ProfileComponent,
     OrdersCreateComponent,
     ProfileEditComponent,
+    OrderComponent,
 
   ],
   imports: [

@@ -4,16 +4,16 @@
 
 }
 header>div,footer>div,.content{
-  max-width:1638px;
-  width:100%;
-  min-width:1380px;
+
+  width:10000px;
+
   padding:12px 20px;
   box-sizing:border-box;
 }
 div.header{
-  max-width:1638px;
-  width:100%;
-  min-width:1380px;
+
+  width:10000px;
+
   padding:0 34px;
   box-sizing:border-box;
 }

@@ -3,19 +3,24 @@
     <thead class="table table-striped">
     <tr>
       <th scope="col">Заказал</th>
+      <th scope="col">Дата создания</th>
       <th scope="col">Исполнитель</th>
+      <th scope="col">Дата исполнения</th>
       <th scope="col">Задача</th>
+      <th scope="col">статус</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of orders">
-
-      <td>{{item.userCrate.lastName +' '+ item.userCrate.firstName +' '+item.userCrate.middleName}}</td>
+    <tr *ngFor="let item of orders" (click)="text(item.id) ">
+      <td >{{item.userCrate.lastName +' '+ item.userCrate.firstName +' '+item.userCrate.middleName}}</td>
+      <td>{{item.creationDate}}</td>
       <td>{{item.userExecutor.username}}</td>
-      <td>{{item.text}}</td>
+      <td>{{item.completionDate}}</td>
+      <td>{{item.textMin}}</td>
+      <td> <input type="checkbox" name="option2" [checked]="item.done" [disabled]="log.user.admin "></td>
+
     </tr>
     </tbody>
   </table>
-
-
 </div>
