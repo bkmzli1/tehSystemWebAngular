@@ -34,7 +34,6 @@ public class Main {
     }
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
-
     }
     @RequestMapping("/token")
     public Map<String,String> token(HttpSession session) {

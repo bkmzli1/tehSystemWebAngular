@@ -2,6 +2,7 @@ package example.awesomeproj.areas.user.models.service;
 
 
 
+import example.awesomeproj.areas.Img.entities.Img;
 import example.awesomeproj.areas.role.entities.Role;
 import example.awesomeproj.areas.role.models.service.RoleServiceModel;
 import example.awesomeproj.areas.user.entities.User;
@@ -23,7 +24,7 @@ public class UserServiceModel {
 
     private boolean executor;
 
-    private String img;
+    private Img img;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -105,6 +106,11 @@ public class UserServiceModel {
         this.middleName = middleName;
     }
 
+    public Img getImg() {
+        return img;
+    }
 
-
+    public void setImg(Img img) {
+        this.img = img;
+    }
 }

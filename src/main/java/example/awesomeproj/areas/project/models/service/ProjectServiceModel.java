@@ -1,6 +1,7 @@
 package example.awesomeproj.areas.project.models.service;
 
 import example.awesomeproj.areas.user.entities.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ public class ProjectServiceModel {
     private User userExecutor;
     private String text;
     private BigDecimal price;
+    private MultipartFile[] img;
 
     public String getId() {
         return id;
@@ -51,5 +53,13 @@ public class ProjectServiceModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public MultipartFile[] getImg() {
+        return img;
+    }
+
+    public void setImg(MultipartFile[] img) {
+        this.img = img;
     }
 }

@@ -1,6 +1,8 @@
 package example.awesomeproj.areas.project.models.binding;
 
 import example.awesomeproj.areas.user.entities.User;
+import org.apache.tomcat.jni.File;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -8,12 +10,15 @@ import java.math.BigDecimal;
 
 public class CreateProjectBindingModel {
 
+
     @NotEmpty
     private String userCrate;
     @NotEmpty
     private String userExecutor;
     @NotNull
     private String text;
+
+
 
 
     public CreateProjectBindingModel() {
@@ -42,4 +47,6 @@ public class CreateProjectBindingModel {
     public void setText(String text) {
         this.text = text;
     }
+
+
 }

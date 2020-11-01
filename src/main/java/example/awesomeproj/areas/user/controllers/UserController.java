@@ -1,6 +1,7 @@
 package example.awesomeproj.areas.user.controllers;
 
 
+import example.awesomeproj.areas.Img.repositories.ImgRepository;
 import example.awesomeproj.areas.role.entities.Role;
 
 import example.awesomeproj.areas.user.entities.User;
@@ -31,13 +32,15 @@ public class UserController {
 
 
     private final UserRepository userRepository;
+    private final ImgRepository imgRepository;
     private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserController(UserService userService, UserRepository userRepository, ImgRepository imgRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.userRepository = userRepository;
+        this.imgRepository = imgRepository;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -97,7 +100,7 @@ public class UserController {
     public Set<Object> executor() {
         Set<Object> users = new HashSet<>();
         Stream<User> stream = userRepository.findAllBy().stream();
-        stream.filter(x  -> x.roleStr().toString().contains("executor".toUpperCase())).forEach(user -> {
+        stream.filter(x -> x.roleStr().toString().contains("executor".toUpperCase())).forEach(user -> {
             Map<String, Object> mapUser = new LinkedHashMap<>();
             mapUser.put("id", user.getId());
             mapUser.put("name", user.getUsername());
@@ -119,19 +122,19 @@ public class UserController {
 
     @RequestMapping("/")
     @CrossOrigin(origins = "*", maxAge = 3600,
-            allowedHeaders={"x-auth-token", "x-requested-with", "x-xsrf-token"})
+            allowedHeaders = {"x-auth-token", "x-requested-with", "x-xsrf-token"})
     public Message home() {
         return new Message("Hello World");
     }
 
 
     @RequestMapping("/id/{id}")
-    public  Map<String, Object> img(@PathVariable String id) {
+    public Map<String, Object> img(@PathVariable String id) {
         User user = null;
 
         try {
-            user =  userRepository.findOneById(id);
-        }catch (NullPointerException e){
+            user = userRepository.findOneById(id);
+        } catch (NullPointerException e) {
 
         }
         Map<String, Object> mapUser = new LinkedHashMap<>();
@@ -141,6 +144,7 @@ public class UserController {
         mapUser.put("img", user.getImg());
         return mapUser;
     }
+
     class Message implements Serializable {
         private final String id = "123";
         private String content;
@@ -164,12 +168,12 @@ public class UserController {
 
     @PutMapping("/edit")
     public UserServiceModel edit(@RequestBody User userEd) {
-        UserServiceModel user = this.modelMapper.map( userRepository.findOneById(userEd.getId()), UserServiceModel.class);
-        user.setLastName(userEd.getLastName());
-        user.setFirstName(userEd.getFirstName());
-        user.setMiddleName(userEd.getMiddleName());
-        user.setPassword(userEd.getPassword());
-        user.setEmail(userEd.getEmail());
+        UserServiceModel user = this.modelMapper.map(userRepository.findOneById(userEd.getId()), UserServiceModel.class);
+        user.setLastName(noNull(userEd.getLastName(), user.getLastName()));
+        user.setFirstName(noNull(userEd.getFirstName(), user.getFirstName()));
+        user.setMiddleName(noNull(userEd.getMiddleName(), user.getMiddleName()));
+        user.setPassword(noNull(userEd.getPassword(), user.getPassword()));
+        user.setEmail(noNull(userEd.getEmail(), user.getEmail()));
         userRepository.findOneById(userEd.getId()).getAuthorities().stream().forEach(role -> {
             if (role.getAuthority().equals("ADMIN")) user.setAdmin(true);
             if (role.getAuthority().equals("EXECUTOR")) user.setExecutor(true);
@@ -177,5 +181,13 @@ public class UserController {
         this.userService.create(user);
 
         return user;
+    }
+
+    private String noNull(String in, String edit) {
+        if (in.replace(" ", "").equals("")) {
+            return edit;
+        } else {
+            return in;
+        }
     }
 }

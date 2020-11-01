@@ -1,6 +1,8 @@
 package example.awesomeproj.areas.user.entities;
 
 
+import example.awesomeproj.areas.Img.entities.Img;
+
 import example.awesomeproj.areas.role.entities.Role;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +20,12 @@ public class User implements UserDetails {
     private String password;
     private String username;
     private String email;
-    private String img;
+
     private String firstName;
     private String lastName;
     private String middleName;
+    private String telephone;
+    private Img img;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isEnabled;
@@ -88,13 +92,6 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -173,5 +170,26 @@ public class User implements UserDetails {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "one_img",    
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "img_id", referencedColumnName = "id"))
+
+    public Img getImg() {
+        return img;
+    }
+
+    public void setImg(Img img) {
+        this.img = img;
     }
 }

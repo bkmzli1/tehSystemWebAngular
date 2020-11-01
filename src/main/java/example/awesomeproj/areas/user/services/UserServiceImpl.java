@@ -1,6 +1,8 @@
 package example.awesomeproj.areas.user.services;
 
 
+import example.awesomeproj.areas.Img.entities.Img;
+import example.awesomeproj.areas.Img.repositories.ImgRepository;
 import example.awesomeproj.areas.role.entities.Role;
 import example.awesomeproj.areas.role.models.service.RoleServiceModel;
 import example.awesomeproj.areas.role.services.RoleService;
@@ -23,13 +25,15 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ModelMapper modelMapper;
     private final RoleService roleService;
+    private final ImgRepository imgRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, ModelMapper modelMapper, RoleService roleService) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, ModelMapper modelMapper, RoleService roleService, ImgRepository imgRepository) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.modelMapper = modelMapper;
         this.roleService = roleService;
+        this.imgRepository = imgRepository;
     }
 
     @Override
@@ -50,7 +54,13 @@ public class UserServiceImpl implements UserService {
         userEntity.setAccountNonLocked(true);
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
-        userEntity.setImg("public/vk.png");
+        if (userServiceModel.getImg() == null) {
+            Img img = new Img();
+            img.setImg("public/vk.png");
+            img.setName("userImg");
+            userEntity.setImg(img);
+            imgRepository.save(img);
+        }
 
         Set<Role> authorities = new HashSet<>();
         RoleServiceModel roleServiceModel = null;
