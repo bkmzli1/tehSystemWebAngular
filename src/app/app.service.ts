@@ -36,7 +36,8 @@ class Log {
 @Injectable()
 export class AppService {
     sservrURL = '//localhost:1985/';
-    idProject: string ;
+    idProject: string;
+    rout = '/';
 
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
         if (!('' === this.cookieService.get('ps'))) {
@@ -47,7 +48,8 @@ export class AppService {
         }
     }
 
-    static log: Log;
+    private static _log: Log;
+
     static servrURL = '//localhost:1985/';
     credentials = {username: '', password: ''};
 
@@ -58,7 +60,7 @@ export class AppService {
 
 
     static get_Roles() {
-        return AppService.log.roles;
+        return AppService._log.roles;
     }
 
     authenticate(credentials, callback) {
@@ -68,9 +70,9 @@ export class AppService {
             authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});
         this.http.get(AppService.servrURL + 'user', {headers}).subscribe((response: Log) => {
-            AppService.log = response;
+            AppService._log = response;
 
-            if (AppService.log.name) {
+            if (AppService._log.name) {
                 this.authenticated = true;
             } else {
                 this.authenticated = false;
@@ -79,7 +81,7 @@ export class AppService {
 
             this.cookieService.set('ps', credentials.password);
             this.cookieService.set('us', credentials.username);
-            console.log(response);
+
             return callback && callback();
         });
 
@@ -111,10 +113,9 @@ export class AppService {
         headers.set('Content-Type', 'multipart/form-data');
         headers.set('Accept', 'application/json');
         this.message = null;
-        console.log(credentials);
+
         this.http.post(AppService.servrURL + 'project/create', credentials).subscribe((next: PR) => {
-                console.log(next);
-                console.log(AppService.servrURL + 'project/create/' + next.id);
+
                 this.http.post(AppService.servrURL + 'project/create/' + next.id, img, {headers}).subscribe(
                     next2 => this.router.navigateByUrl('/' + rout),
                     error2 => console.log(error2)
@@ -124,6 +125,13 @@ export class AppService {
             error => console.log(error));
 
     }
+
+
+    static get log(): Log {
+        return this._log;
+    }
+
+
 }
 
 

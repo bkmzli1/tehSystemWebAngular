@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
     if (!this.app.authenticated) {
+      app.rout = '/reg';
       this.router.navigateByUrl('/login');
       return;
     }

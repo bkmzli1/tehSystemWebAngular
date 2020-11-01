@@ -35,8 +35,13 @@ export class OrdersComponent implements OnInit {
 
 
     constructor(private app: AppService, private router: Router, private http: HttpClient) {
+        if (!this.app.authenticated) {
+            app.rout = '/orders';
+            this.router.navigateByUrl('/login');
+            return;
+        }
         this.http.post(AppService.servrURL + 'project/get', AppService.log.user.id).subscribe((response: Project[]) => {
-            console.log(response);
+
             this.orders = response;
         });
     }
@@ -45,7 +50,7 @@ export class OrdersComponent implements OnInit {
     }
 
     id(i: number) {
-        console.log(i);
+
         i++;
         this.i = i;
         return i;
@@ -53,7 +58,7 @@ export class OrdersComponent implements OnInit {
 
     text(id: string) {
         this.app.idProject = id;
-        console.log(this.app.idProject);
+
         this.router.navigateByUrl('/order');
     }
 }
