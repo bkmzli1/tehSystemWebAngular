@@ -26,6 +26,7 @@ export class ProfileEditComponent implements OnInit {
   credentials = {username: '', password: ''};
   constructor(private app: AppService, private http: HttpClient, private router: Router, private cookieService: CookieService) {
     if (!this.app.authenticated) {
+      app.rout = '/profile';
       this.router.navigateByUrl('/login');
       return;
     }
@@ -37,7 +38,7 @@ export class ProfileEditComponent implements OnInit {
   edit() {
     this.userEd.id = AppService.log.user.id;
     this.http.put(AppService.servrURL + 'edit', this.userEd).subscribe((userEd: User) => {
-      console.log(userEd);
+
       this.credentials.username = this.cookieService.get('us');
       this.credentials.password = this.cookieService.get('ps');
       this.app.authenticate(this.credentials, () => {

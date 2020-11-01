@@ -1,30 +1,39 @@
-<h1>Профиль</h1>
-<div [hidden]="!authenticated()" >
-  <div style="float:left">
-    <div class="load_left">
-      <div class="socseti">
-        <div class="author_block">
-          <div class="author_avatar">
-            <div align="right" style="margin-right: 20px;">
-              <div class="autor_avatar_in"><a href="/index/8-1" id="a_avatar" [title]="login.user.username"><span
-                class="user_avatar"><img src="http://localhost:1985/public/vk.png" alt="" border="0"></span></a></div>
+<div class="text_padding">
+    <h1>Профиль</h1>
+    <div [hidden]="!authenticated()" *ngIf="authenticated()">
+        <div style="float:left" >
+            <div class="load_left">
+                <div class="socseti">
+                    <div class="author_block">
+                        <div class="author_avatar">
+                            <div align="right" style="margin-right: 20px;">
+                                <div class="autor_avatar_in"><a href="/index/8-1" id="a_avatar"
+                                                                [title]="login.user.username"><span
+                                        class="user_avatar"><img [src]="servrURL+'public/vk.png'" alt=""
+                                                                 border="0"></span></a></div>
+                            </div>
+                        </div>
+                        <div class="author_information">
+                            <div class="author_user" id="h1_name" title="">Имя
+                                пользователя: {{login.user.username}}</div>
+                            <div class="author_group" id="a_role"><font color="#17575f">Роль
+                                пользователя: {{login.roles}}</font></div>
+                            <div class="author_group" id="a_FIO"><font
+                                    color="#17575f">ФИО: {{login.user.lastName + ' ' + login.user.firstName + ' ' + login.user.middleName}}</font>
+                            </div>
+                            <div class="author_group" id="a_email"><font
+                                    color="#17575f">Почта: {{login.user.email}}</font></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="author_information">
-            <div class="author_user" id="h1_name" title="">Имя пользователя: {{login.user.username}}</div>
-            <div class="author_group" id="a_role"><font color="#17575f">Роль пользователя: {{login.roles}}</font></div>
-            <div class="author_group" id="a_FIO"><font color="#17575f">ФИО: {{login.user.lastName +' '+ login.user.firstName +' '+login.user.middleName}}</font></div>
-            <div class="author_group" id="a_email"><font color="#17575f">Почта: {{login.user.email}}</font></div>
-          </div>
         </div>
-      </div>
+        <div class="author_information">
+            <button class="btn btn-primary" (click)="edit()">Редоктировать профиль</button>
+        </div>
     </div>
-  </div>
-  <div class="author_information">
-    <button class="btn btn-primary" (click)="edit()" >Редоктировать профиль</button>
-  </div>
-</div>
 
-<div [hidden]="authenticated()">
-  <p>Login to see your greeting</p>
+    <div [hidden]="authenticated()">
+        <p>Login to see your greeting</p>
+    </div>
 </div>

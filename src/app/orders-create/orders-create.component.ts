@@ -33,9 +33,14 @@ export class OrdersCreateComponent implements OnInit {
     user: User = null;
 
     constructor(private app: AppService, private http: HttpClient, private router: Router) {
+        if (!this.app.authenticated) {
+            app.rout = '/ordersCreate';
+            this.router.navigateByUrl('/login');
+            return;
+        }
         this.http.get(AppService.servrURL + 'executor').subscribe((response: User[]) => {
             this.users = response;
-            console.log(this.users);
+
         });
 
     }
@@ -53,7 +58,7 @@ export class OrdersCreateComponent implements OnInit {
 
 
     test(item: string) {
-        console.log(item);
+
         this.http.get(AppService.servrURL + 'id/' + item).subscribe((response: User) => {
             this.user = response;
         });
