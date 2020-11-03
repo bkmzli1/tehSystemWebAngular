@@ -11,12 +11,14 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
     greeting = {};
     login = AppService.log;
-    servrURL: string;
+    servrURL: string = AppService.servrURL;
+
 
     constructor(private app: AppService, private http: HttpClient, private router: Router) {
         if (!this.app.authenticated) {
             app.rout = '/profile';
             this.router.navigateByUrl('/login');
+            this.servrURL = AppService.servrURL;
             return;
         }
     }

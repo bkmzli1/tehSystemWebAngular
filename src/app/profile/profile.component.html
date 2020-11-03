@@ -1,7 +1,7 @@
 <div class="text_padding">
     <h1>Профиль</h1>
     <div [hidden]="!authenticated()" *ngIf="authenticated()">
-        <div style="float:left" >
+        <div style="float:left">
             <div class="load_left">
                 <div class="socseti">
                     <div class="author_block">
@@ -9,7 +9,7 @@
                             <div align="right" style="margin-right: 20px;">
                                 <div class="autor_avatar_in"><a href="/index/8-1" id="a_avatar"
                                                                 [title]="login.user.username"><span
-                                        class="user_avatar"><img [src]="servrURL+'public/vk.png'" alt=""
+                                        class="user_avatar"><img [src]="servrURL+login.user.img.img" alt=""
                                                                  border="0"></span></a></div>
                             </div>
                         </div>

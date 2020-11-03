@@ -12,11 +12,7 @@ export class HomeComponent implements OnInit {
     private greeting;
 
     constructor(private app: AppService, private http: HttpClient, private router: Router) {
-        if (!this.app.authenticated) {
-            app.rout = '/home';
-            this.router.navigateByUrl('/login');
-            return;
-        }
+
     }
 
     ngOnInit(): void {

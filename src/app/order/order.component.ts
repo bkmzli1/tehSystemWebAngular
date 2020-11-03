@@ -5,20 +5,31 @@ import {AppService} from '../app.service';
 
 class Project {
     id: string;
+    name: string;
     userCrate: User;
     userExecutor: User;
+    img: Img[];
     text: string;
     creationDate: string;
     completionDate: string;
     done: boolean;
 }
 
-class User {
+class Img {
+    img: string;
+    name: string;
     id: string;
+}
+
+class User {
+    id: Img;
     name: string;
     img: string;
     email: string;
     telephone: string;
+    lastName: string;
+    firstName: string;
+    middleName: string;
 }
 
 @Component({
@@ -26,22 +37,26 @@ class User {
     templateUrl: './order.component.html',
     styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent {
     orders: Project;
+    sservrURL: string;
 
     constructor(private app: AppService, private router: Router, private http: HttpClient) {
         if (!this.app.authenticated) {
             app.rout = '/orders';
+            this.sservrURL = app.sservrURL;
             this.router.navigateByUrl('/login');
             return;
         }
         this.http.post(AppService.servrURL + 'project/get/' + app.idProject, AppService.log.user.id).subscribe((response: Project) => {
-
+            console.log(response);
             this.orders = response;
         });
     }
 
-    ngOnInit(): void {
-    }
 
+    href(s: string) {
+        console.log(s);
+
+    }
 }

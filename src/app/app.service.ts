@@ -12,12 +12,16 @@ class PR {
     img: any;
 }
 
+class Img {
+    img: string;
+}
+
 class User {
     id: string;
     username: string;
     email: string;
     admin: boolean;
-    img: string;
+    img: Img;
     firstName: string;
     lastName: string;
     middleName: string;

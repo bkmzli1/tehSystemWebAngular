@@ -1,10 +1,29 @@
 <div class="text_padding">
-    <p>id:{{orders.id}}</p>
-    <p>done:{{orders.done}}</p>
-    <p>completionDate:{{orders.completionDate}}</p>
-    <p>creationDate:{{orders.creationDate}}</p>
-    <p>text:{{orders.text}}</p>
-    <p>userCrate:{{orders.userCrate.name}}</p>
-    <p>userExecutor:{{orders.userExecutor.name}}</p>
-    <img src="">
+    <h1 align="center">Тема: {{orders.name}}</h1>
+    <div>
+        <p *ngIf="orders.done == true">Статус: Выполнено {{orders.completionDate}}</p>
+        <p *ngIf="orders.done == false">Статус: Не выполнено</p>
+    </div>
+    <p>Создано:{{orders.creationDate}}</p>
+    <p>Создал:{{orders.userCrate.lastName + ' ' + orders.userCrate.firstName + ' ' + orders.userCrate.middleName}}</p>
+    <p>Должен
+        исполнить: {{orders.userExecutor.lastName + ' ' + orders.userExecutor.firstName + ' ' + orders.userExecutor.middleName}}</p>
+
+    <p>Описание:  {{orders.text}}</p>
+    <div class="grid">
+        <label [attr.href]="app.sservrURL +  item.img" *ngFor="let item of orders.img" for="pic-1" class="grid-item"><a
+                [href]="app.sservrURL +  item.img">
+            <img id="statya" (click)="href('111111')" style="height: auto; width: 400px"
+                 [src]="app.sservrURL +  item.img"/>
+            <p>{{item.name}}</p>
+        </a>
+
+        </label>
+    </div>
+    <a [href]="app.sservrURL + 'project/download/'+ orders.id">
+        <button class="ld-but">Скачать всё</button>
+    </a>
+
+
+
 </div>
